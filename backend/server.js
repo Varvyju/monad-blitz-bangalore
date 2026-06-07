@@ -143,14 +143,14 @@ JSON Schema:
 Today's date: ${new Date().toISOString().split("T")[0]}
 Extract the work receipt details.`;
 
-    const llmResponse = await fetch("https://api.sarvam.ai/v1/chat/completions", {
+    const llmResponse = await fetch(`https://api.sarvam.ai/v1/chat/completions`, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${SARVAM_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "sarvam-m", // Sarvam M (higher-quality model for extraction)
+        model: "sarvam-30b",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userMessage },
