@@ -1,33 +1,94 @@
-# Monad Blitz Bangalore Submission Process
+# GigProof 🧱
 
-1. Visit the `monad-blitz-bangalore` repo (link here) and fork it.
+**Voice → Blockchain Receipt in 10 seconds for India's 500M informal workers**
 
-![image](https://github.com/user-attachments/assets/ab46b2ea-ee0f-4237-87ef-c33bb1a94749)
+> Built at Monad Blitz Bangalore V4 — The Agent Economy · June 7, 2026
 
-2. Give it your project name, a one-liner description, make sure you are forking `main` branch and click `Create Fork`.
+---
 
-![image](https://github.com/user-attachments/assets/ffdebab7-c340-4e14-bd3c-36905f1016a3)
+## The Problem
 
-3. In your fork you can make all the changes you want, add code of your project, create branches, add information to `README.md`, you can change anything and everything.
+India has **500+ million informal workers** — construction labour, domestic workers, farm helpers. They work on verbal agreements. When contractors don't pay, they have zero proof. No receipt. No record. No recourse.
 
-4. Once you are done with your project and ready for submission, create a pull request.
+India's new Labour Codes (effective November 2025) mandate gig worker social security — but the **90-day proof-of-work requirement** has no system to record this for informal workers. GigProof fills that gap.
 
-![image](https://github.com/user-attachments/assets/58aa7140-55db-49db-9361-332449dbe116)
+**The gap the Monad event theme describes — applied to 500 million real people:**
+- ❌ **Identity** — no on-chain identity
+- ❌ **Memory** — no record of what they did
+- ❌ **Ownership** — can't prove their work history
+- ❌ **Trust** — contractors can deny payment
+- ❌ **Coordination** — no way to dispute
+- ❌ **Execution** — payment requires human middlemen
 
-![image](https://github.com/user-attachments/assets/5c8c61b1-23fd-4177-b06e-e8fca3a61ad4)
+**GigProof fixes all six — using Sarvam AI + Monad.**
 
-5. Make sure you are create a pull request to the right repo `monad-developers/monad-blitz-bangalore`.
+---
 
-![image](https://github.com/user-attachments/assets/41774ebc-d64c-43de-b3be-7e46d21bcaba)
+## How It Works
 
-6. Make sure you see “Able to merge”, when creating a pull request then you can click `Create Pull Request`.
+```
+Worker speaks Kannada/Hindi
+       ↓
+  Sarvam STT (Saaras v3) — transcribes in 22 Indian languages
+       ↓
+  Sarvam LLM (Sarvam-M) — extracts job details → receipt JSON
+       ↓
+  SHA-256 hash of receipt
+       ↓
+  GigProof.sol on Monad Testnet — receipt hash stored on-chain forever
+       ↓
+  Employer clicks "Approve & Pay" → escrow auto-releases MON
+       ↓
+  Sarvam TTS (Bulbul v3) — speaks payment confirmation in Kannada
+       ↓
+  Worker profile: portable on-chain work history + reputation score
+```
 
-![image](https://github.com/user-attachments/assets/b52f5e6f-9091-43af-9025-f2c61a7d1205)
+---
 
-7. Give the pull request your project name and a description of the project (describe as much as you can about your project you can even add video demo links) then click `Create pull request`.
+## Demo Flow (3 minutes)
 
-![image](https://github.com/user-attachments/assets/9a3cc30a-498f-4d83-9060-adb11f88eff6)
+1. **"500M Indians work every day. None can prove it. Until now."**
+2. Worker speaks in Kannada → Sarvam transcribes live → receipt extracted
+3. Receipt hash written to **Monad testnet** → show tx on Monadscan
+4. Employer clicks Pay → payment fires → Sarvam TTS confirms in Kannada
+5. Worker profile: on-chain reputation + full work history
 
-8. Finally verify if you created your pull request correctly by checking the repo on which the pull request is created and the source and destination branch of the pull request!
+---
 
-![image](https://github.com/user-attachments/assets/b16befcd-2c29-4520-aa70-29883306e85c)
+## Tech Stack
+
+| Layer | Technology | What it does |
+|-------|-----------|--------------|
+| Voice | **Sarvam Saaras v3** | STT in 22 Indian languages |
+| AI extraction | **Sarvam-M (30B LLM)** | Structured receipt from speech |
+| Voice confirmation | **Sarvam Bulbul v3** | TTS payment confirmation |
+| Receipt proof | **SHA-256 → Monad** | Tamper-proof hash on-chain |
+| Smart contract | **GigProof.sol** | Escrow + hash registry |
+| Chain | **Monad Testnet** | 10,000 TPS, 0.4s finality |
+| Frontend | **Next.js + ethers.js** | Worker + employer UIs |
+| Backend | **Node.js + Express** | Sarvam API orchestration |
+
+---
+
+## Deployed Contract
+
+- **Network:** Monad Testnet (Chain ID: 10143)
+- **Contract:** `[ADDRESS_AFTER_DEPLOYMENT]`
+- **Monadscan:** https://testnet.monadscan.com/address/[ADDRESS]
+
+---
+
+## Team
+
+Built at Monad Blitz Bangalore V4 in 5 hours 45 minutes.
+
+---
+
+## Why This Wins
+
+- ✅ Uses Sarvam deeply (STT + LLM + TTS — not just one API)
+- ✅ Uses Monad for real (deployed contract, live txs, escrow)
+- ✅ Real world problem (500M people, cited in India's Labour Codes 2026)
+- ✅ Demo is emotional — Kannada → blockchain in 10 seconds
+- ✅ The agent is a real economic actor: owns identity, executes payment, stores memory
