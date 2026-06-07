@@ -150,7 +150,8 @@ Extract the work receipt details.`;
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "sarvam-m",  // Sarvam 30B
+        //model: "sarvam-m",  // Sarvam 30B
+        model: "sarvam-2b", // Sarvam 2B (faster, cheaper, still good for structured extraction)
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userMessage },
