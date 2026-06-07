@@ -28,11 +28,11 @@ export default function EmployerPage() {
   // ─── Connect wallet ──────────────────────────────────────────────────────
 
   const connectWallet = async () => {
-    if (!window.ethereum) {
+    if (!(window as any).ethereum) {
       setError("Please install MetaMask");
       return;
     }
-    const provider = new ethers.BrowserProvider(window.ethereum);
+    const provider = new ethers.BrowserProvider((window as any).ethereum);
     await provider.send("eth_requestAccounts", []);
     const signer = await provider.getSigner();
     const address = await signer.getAddress();
@@ -86,7 +86,7 @@ export default function EmployerPage() {
       setApproving(receiptId);
       setError("");
 
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new ethers.BrowserProvider((window as any).ethereum);
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(GIGPROOF_ADDRESS, GIGPROOF_ABI, signer);
 
@@ -121,7 +121,7 @@ export default function EmployerPage() {
   const addJobManually = async () => {
     try {
       setLoading(true);
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new ethers.BrowserProvider((window as any).ethereum);
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(GIGPROOF_ADDRESS, GIGPROOF_ABI, signer);
 
