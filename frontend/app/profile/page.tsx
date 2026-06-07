@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import { useSearchParams } from "next/navigation";
 import { GIGPROOF_ABI, GIGPROOF_ADDRESS } from "../../lib/contract";
 
 interface ProfileData {
@@ -22,14 +21,21 @@ interface ReceiptData {
 }
 
 export default function ProfilePage() {
-  const searchParams = useSearchParams();
-  const walletParam = searchParams.get("wallet");
+  const [walletParam, setWalletParam] = useState("");
 
   const [address, setAddress] = useState(walletParam || "");
   const [inputAddress, setInputAddress] = useState(walletParam || "");
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const wallet = typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("wallet") || ""
+      : "";
+
+    setWalletParam(wallet);
+  }, []);
 
   useEffect(() => {
     if (walletParam) {
