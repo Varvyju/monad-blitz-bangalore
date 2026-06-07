@@ -129,11 +129,11 @@ export default function WorkerPage() {
       setError("");
 
       // Check for MetaMask / injected wallet
-      if (!window.ethereum) {
+      if (!(window as any).ethereum) {
         throw new Error("No wallet found. Install MetaMask or use a wallet browser.");
       }
 
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new ethers.BrowserProvider((window as any).ethereum);
 
       // Request wallet connection
       await provider.send("eth_requestAccounts", []);
@@ -143,13 +143,13 @@ export default function WorkerPage() {
       if (network.chainId !== BigInt(10143)) {
         // Ask to switch
         try {
-          await window.ethereum.request({
+          await (window as any).ethereum.request({
             method: "wallet_switchEthereumChain",
             params: [{ chainId: "0x278F" }], // 10143 in hex
           });
         } catch {
           // Add network if not found
-          await window.ethereum.request({
+          await (window as any).ethereum.request({
             method: "wallet_addEthereumChain",
             params: [
               {
@@ -447,7 +447,7 @@ export default function WorkerPage() {
 
             <div className="flex gap-3">
               <button
-                onClick={() => window.location.href = `/profile?wallet=${window.ethereum?.selectedAddress}`}
+                onClick={() => window.location.href = `/profile?wallet=${(window as any).ethereum?.selectedAddress}`}
                 className="flex-1 py-3 bg-violet-600 hover:bg-violet-500 rounded-xl font-medium transition-all"
               >
                 View My Profile

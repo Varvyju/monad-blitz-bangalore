@@ -83,8 +83,8 @@ export default function ProfilePage() {
   };
 
   const connectMyWallet = async () => {
-    if (!window.ethereum) { setError("No wallet found"); return; }
-    const provider = new ethers.BrowserProvider(window.ethereum);
+    if (!(window as any).ethereum) { setError("No wallet found"); return; }
+    const provider = new ethers.BrowserProvider((window as any).ethereum);
     await provider.send("eth_requestAccounts", []);
     const signer = await provider.getSigner();
     const addr = await signer.getAddress();
